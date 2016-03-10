@@ -1,0 +1,61 @@
+package test2;
+public class YunSuan {
+     public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        int a1,a2, b1,b2,d1,d2,c,j;
+        for(int k=0;k<30;k++)
+        {
+        	a1=(int)(Math.random()*100);//定义第一个假分数的分子
+        	a2=(int)(Math.random()*100);//定义第一个假分数的分母
+            b1=(int)(Math.random()*100);//定义第二个假分数的分子
+            b2=(int)(Math.random()*100);//定义第二个假分数的分母
+            d1=(int)(Math.random()*100);//定义整数时的第一个整数
+            d2=(int)(Math.random()*100);//定义整数时的第一个整数
+            j=(int)(Math.random()*2);//定义计算时的整数加减法或是假分数的加减法
+            c=(int)(Math.random()*4);//定义加减乘除
+            if(j==0)
+            {
+            	for(int i=0;;)
+            	{
+            		if(a2==0){a2=(int)(Math.random()*100);}
+            		else
+            			break;
+            	}
+            	for(int n=0;;)
+            	{
+            		if(b2==0){d2=(int)(Math.random()*100);}
+            		else
+            			break;
+            	}
+        		   
+        			   if(c==0)
+        			       System.out.println(a1+"/"+a2+"+"+b1+"/"+b2+"=");
+        			   if(c==1)
+            			   System.out.println(a1+"/"+a2+"-"+b1+"/"+b2+"=");
+        			   if(c==2)
+            			   System.out.println(a1+"/"+a2+"*"+b1+"/"+b2+"=");
+        			   if(c==3)
+        			   { 
+        				   if(b1!=0)
+            			   System.out.println(a1+"/"+a2+"/"+b1+"/"+b2+"=");
+        			   }
+        		   }
+       if(j==1)
+		{
+			if(c==0)
+			System.out.println(d1+"+"+d2+"=");
+			if(c==1)
+				System.out.println(d1+"-"+d2+"=");
+			if(c==2)
+				System.out.println(d1+"*"+d2+"=");
+			if(c==3)
+			{
+				if(d2!=0)
+				System.out.println(d1+"/"+d2+"=");
+				
+			}
+		}
+        	
+        }
+     }
+}
