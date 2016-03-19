@@ -1,0 +1,221 @@
+package test2;
+import java.util.*;
+import java.util.ArrayList;
+public class math {
+	static int simplify(int x,int y)
+	{
+		//求最大的公约数
+		int t,xx,yy,k=1;
+		if(x>y){
+			t=x;x=y;y=t;
+		  }
+		for(int i=x;i>=2;i--){
+			xx=x%i;yy=y%i;
+			if(xx==0&&yy==0){
+				k=i;
+				break;
+			}
+		}
+	return k;	    
+   }
+
+//程序的开始 
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        int first1,first2, second1,second2,third1,third2,c,j,c2;
+        String first3 = null,second3=null;
+        //控制题目的个数
+        Scanner in = new Scanner(System.in);
+        System.out.println("请输入要定制的个数：");
+        int number=in.nextInt();
+        System.out.println("请输入生成数 的取值范围，数值大于0：");
+        int range =in.nextInt();
+        System.out.println("请输入是否产生括号（是1，否0）：");
+        int bracket =in.nextInt();
+        if(bracket==0){
+        System.out.println("是否有无负数（有1，没有0），请输入：");
+        int negative=in.nextInt();
+        System.out.println("请输入是否有乘除法,(有1，没有0)，请输入：");
+        int num =in.nextInt();
+        if(num==1){
+             System.out.println("除法有无余数，(如果1，没有0)，请输入：");
+             int remain =in.nextInt();
+             }
+        else
+        	System.out.println("不用判断除法有无余数！");
+        for(int k=0;k<number;k++)
+        {
+        	//随机数的生成
+        	first1=(int)(Math.random()*range);//定义第一个真分数的分子
+        	first2=(int)(Math.random()*(range-1)+1);//定义第一个真分数的分子，分母不能为零
+            second1=(int)(Math.random()*range);//定义第二个真分数的分子
+            second2=(int)(Math.random()*(range-1)+1);//定义第二个真分数的分母,分母不能为零
+            third1=(int)(Math.random()*range);//定义整数时的第一个整数
+            third2=(int)(Math.random()*range);//定义整数时的第一个整数
+            j=(int)(Math.random()*2);//定义计算时的整数加减法或是真分数的加减法
+            c=(int)(Math.random()*4);//定义加减乘除  
+            c2=(int)(Math.random()*2);//定义只有加减法的时候
+        	//将分数化简
+            int s1=simplify(first1,first2);//求最大公约数
+            if(first1/s1!=0&&first2/s1!=1)
+                first3="("+first1/s1+"/"+first2/s1+")";
+            if(first1/s1==0||first2/s1==1)
+            	first3="("+first1/s1+")"; //化简
+            int s2=simplify(second1,second2);//求最大公约数
+            if(second1/s2!=0&&second2/s2!=1)
+            	second3="("+second1/s2+"/"+second2/s2+")";
+            if(second1/s2==0||second2/s2==1)
+            	second3="("+second1/s2+")";//化简
+         
+            //计算
+            if(j==0&&num==1){
+            	//有乘除的算法
+            	if(negative==0){
+            	if(c==0)
+            	  System.out.println(first3+" "+"+"+" "+second3+"=");
+      	        if(c==1)
+          		  System.out.println(first3+" "+"-"+" "+second3+"=");
+            	}
+            	if(negative==1){
+            		if(c==0)
+                  	  System.out.println("-"+first3+" "+"+"+" "+second3+"=");
+            	    if(c==1)
+                      System.out.println("-"+first3+" "+"-"+" "+second3+"=");	
+            	}
+      	        if(c==2)
+          	      System.out.println(first3+" "+"*"+" "+second3+"=");
+      	        if(c==3)
+      	        	
+      		      System.out.println(first3+" "+"/"+" "+second3+"=");
+             }
+            if(j==0&&num==0)
+            {//没有乘除的算法
+            	if(c2==0)
+            		System.out.println(first3+" "+"+"+" "+second3+"=");
+      	        if(c2==1){
+      		          if((first1/s1/first2/s2)>=(second1/s2/second2/s2))
+          		           System.out.println(first3+" "+"-"+" "+second3+"=");
+      		          else
+      		               System.out.println(second3+" "+"-"+" "+first3+"=");
+      	        }
+            }
+        if(j==1&&num==1){
+            	//有乘除的算法
+        	    if(negative==0){
+            	if(c==0)
+            		System.out.println(third1+" "+"+"+" "+third2+"=");
+      	        if(c==1)      		        
+          		    System.out.println(third1+" "+"-"+" "+third2+"=");     		        
+      	        }
+        	    if(negative==1){
+        	    	if(c==0)
+                		System.out.println("-"+third1+" "+"+"+" "+third2+"=");
+          	        if(c==1)      		        
+              		    System.out.println("-"+third1+" "+"-"+" "+third2+"="); 
+        	    }
+      	        if(c==2)
+          	      System.out.println(third1+" "+"*"+" "+third2+"=");
+      	        if(c==3){
+      	       
+					//判断有无余数
+      	        	int remain=0;
+      	            if(remain==0){
+      	              for(int a=0;;){
+      	            	  if(third2!=0){
+      	            	      if((third1)%(third2)!=0){
+      	            		   third1=(int)(Math.random()*range);
+      	            		   third2=(int)(Math.random()*range);
+      	            	        }
+      	            	       else
+      	            	    	  break;
+      	            	  }
+      	            	else{
+      	            		third2=(int)(Math.random()*range);
+      	                }
+      	            }	
+      	          }
+      	            if(remain==1){
+      	            	for(int b=0;;){
+      	            		if(third2!=0){
+      	            			if((third1)%(third2)==0){
+      	                		third1=(int)(Math.random()*range);
+      	                		third2=(int)(Math.random()*range);
+      	                	    }
+      	            			else
+      	            				break;
+      	            		}
+      	                	else
+      	                		third2=(int)(Math.random()*range);
+      	            	}
+      	              }
+      		      System.out.println(third1+" "+"/"+" "+third2+"=");
+      	        }
+             }
+            if(j==1&&num==0)
+            {//没有乘除的算法
+            	if(negative==0){
+                	if(c2==0)
+                		System.out.println(third1+" "+"+"+" "+third2+"=");
+          	        if(c2==1)      		        
+              		    System.out.println(third1+" "+"-"+" "+third2+"=");     		        
+          	        }
+            	if(negative==1){
+            	   if(c2==0)
+                        System.out.println("-"+third1+" "+"+"+" "+third2+"=");
+              	   if(c2==1)      		        
+                  		System.out.println("-"+third1+" "+"-"+" "+third2+"="); 
+            	    }
+            }
+        }
+     }
+	
+    if(bracket==1){
+    	int sjs,zfg;
+    	int s;
+    	System.out.println("请输入数字数组个数：");
+    	int m=in.nextInt();
+    	System.out.println("请输入字符数组个数：");
+    	int t=in.nextInt();   	
+    	int ssz[]=new int[m];   //数字数组
+    	char operate[]={'+','-','*','/'};
+    	char f[]=new char[t];  //字符数组
+    	for(int p=0;p<number;p++){
+    		sjs=(int)(Math.random()*10+3);//随机生成数字的个数（3-10）
+    		zfg=sjs-1;//字符个数等于随机数减一
+    		for( s=0;s<sjs;s++){
+    			ssz[s]=(int)(Math.random()*range);//随机生成数
+    		}
+    		for(s=0;s<zfg;s++){
+    			int nu=(int)(Math.random()*3);  //产生0-3的随机数来判断字符的+，-，*，/
+    			f[s]=operate[nu];
+    		}
+    		f[zfg]='=';
+    		if(zfg%2==0){
+    			//字符个数为偶数，从第二个数开始输出括号
+    			System.out.print(ssz[0]);
+    			System.out.print(f[0]);
+    			for(s=1;s<zfg;s++){
+    				System.out.print("(");
+    				System.out.print(ssz[s]);
+    				System.out.print(f[s]);
+    				System.out.print(ssz[s+1]);
+    				System.out.print(")");
+    				System.out.print(f[s+1]);
+    				s=s+1;
+    			}System.out.println();
+    		}
+    		else{
+    			for(s=0;s<zfg;s++){
+    				System.out.print("(");
+    				System.out.print(ssz[s]);
+    				System.out.print(f[s]);
+    				System.out.print(ssz[s+1]);
+    				System.out.print(")");
+    				System.out.print(f[s+1]);
+    				s=s+1;
+    			}System.out.println();
+    		}
+    	}
+    }    
+  }
+}
