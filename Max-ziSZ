@@ -1,0 +1,41 @@
+public class math2 
+{
+    public static void main(String[] ages)
+    {
+    	math2 f=new math2();
+    	int arr[]={-5,-1,-17,-8,-9};
+    	System.out.println("MaxSum:"+f.findMaxSum(arr));
+    }
+    public int findMaxSum(int[] arr)
+    {
+    	int cSum=0;   //定义一个初始的值来求和
+    	int maxSum=arr[0];    //定义最大值为数组的第一个数
+    	int len=arr.length;   //数组的长度
+    	
+    	if(arr==null||len==0)
+    	{
+    		//return (Integer) null;   //如果数组为空或者长度为0，返回空
+    		return 1;
+    	}
+    	for(int i=0;i<2*len;i++)
+    	{
+    		cSum+=arr[i%len];//求和
+    		if(cSum>maxSum||maxSum==cSum)
+    	    {
+    		   maxSum=cSum;
+    	    }
+    		if(cSum<maxSum)  
+    		{//如果和小于0，则将值还赋值为0
+    			
+    			if(maxSum<arr[i%len]||maxSum==arr[i%len])
+    			{
+    				maxSum=arr[i];
+    			}
+    			else
+    				cSum=0;
+    				
+    	    }
+    	}
+    return maxSum;
+    }
+}  
