@@ -1,0 +1,39 @@
+package sy;
+import java.util.*;
+public class Test {
+    
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        Scanner in= new Scanner(System.in);
+        System.out.println("请输入帖子的总数");
+        int sum=in.nextInt();
+        int id[]=new int[sum];
+        System.out.println("请输入id");
+        for(int i=0;i<sum;i++)
+        {
+        	id[i]=in.nextInt();
+        }
+        int waterid=id[0];int j=1;
+        for(int m=1;m<sum;m++)
+        {
+        	if(waterid!=id[m])
+        	{
+        		j=j-1;
+        		if(j<=0)
+        		{
+        			waterid=id[m+1];
+        			j=1;
+        			m++;
+        		}
+        	}
+        	else
+        	{
+        		waterid=id[m];
+        		j=j+1;
+        	}
+        
+        }
+        System.out.println("水王的ID为："+waterid);
+	}
+
+}
